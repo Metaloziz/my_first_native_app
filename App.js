@@ -1,61 +1,36 @@
 import { StatusBar } from 'expo-status-bar'
 import { useState } from 'react'
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Button, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 
 
 export default function App() {
 
-  const [name, setName] = useState('')
-  const [age, setAge] = useState('')
+  const [people, setPeople] = useState([{ name: '1', key: '1' }, {
+    name: '2',
+    key: '2'
+  }, { name: '3', key: '3' }, { name: '4', key: '4' }, {
+    name: '5',
+    key: '5'
+  }, { name: '6', key: '6' }, { name: '7', key: '7' },])
 
 
-  const changeName = (value) => {
-    setName(value)
-  }
-
-  const changeAge = (value) => {
-    setAge(value)
-  }
-
-  const setNewName = () => {
-    // setName('')
-    // setAge(age)
-  }
-
-  return (
-    <View style={styles.container}>
-      <Text>Name: {name}, Age: {age}</Text>
-      <Text>Enter name: </Text>
-      <TextInput style={styles.input}
-                 multiline
-                 value={name}
-                 onChangeText={changeName}
-                 placeholder={'name'}/>
-      <Text>Enter age: </Text>
-      <TextInput style={styles.input}
-                 keyboardType="numeric"
-                 value={age}
-                 onChangeText={changeAge}
-                 placeholder={'age'}/>
-      <Button title={'add'} onPress={setNewName}/>
-      <StatusBar style="auto"/>
-    </View>)
+  return (<View style={styles.container}>
+    <ScrollView>
+      {people.map((el) =>
+        <View key={el.key}><Text style={styles.item}>{el.name}</Text></View>)}
+    </ScrollView>
+  </View>)
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center',
+    flex: 1, backgroundColor: '#fff', paddingTop: 40, paddingHorizontal: 20
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
 
-  input: {
-    borderColor: 'green',
-    borderStyle: 'solid',
-    borderWidth: 2,
-    borderRadius: 10,
-    fontWeight: '900',
-    fontSize: 30,
-    padding: 20,
-    width: 200
+  item: {
+    marginTop: 25, padding: 30, backgroundColor: 'green', fontSize: 20
   }
 
 
