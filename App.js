@@ -1,32 +1,45 @@
 import { StatusBar } from 'expo-status-bar'
 import { useState } from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
 
-const PERSON = {
-  name: 'John', sex: 'male'
-}
 
 export default function App() {
 
-  const [name, setName] = useState('default')
-  const [person, setPerson] = useState(PERSON)
+  const [name, setName] = useState('')
+  const [age, setAge] = useState('')
 
-  const changeName = () => {
-    setName(Date.now().toString())
-    setPerson({ name: 'Ed', sex: 'girl' })
-    alert('done')
+
+  const changeName = (value) => {
+    setName(value)
   }
 
-  return (<View style={styles.container}>
-    <View style={styles.body}>
-      <Text>{person.name} and {person.sex}</Text>
-      <Text>{name}</Text>
-    </View>
-    <View style={styles.buttonContainer}>
-      <Button title={'add'} onPress={changeName}/>
-    </View>
-    <StatusBar style="auto"/>
-  </View>)
+  const changeAge = (value) => {
+    setAge(value)
+  }
+
+  const setNewName = () => {
+    // setName('')
+    // setAge(age)
+  }
+
+  return (
+    <View style={styles.container}>
+      <Text>Name: {name}, Age: {age}</Text>
+      <Text>Enter name: </Text>
+      <TextInput style={styles.input}
+                 multiline
+                 value={name}
+                 onChangeText={changeName}
+                 placeholder={'name'}/>
+      <Text>Enter age: </Text>
+      <TextInput style={styles.input}
+                 keyboardType="numeric"
+                 value={age}
+                 onChangeText={changeAge}
+                 placeholder={'age'}/>
+      <Button title={'add'} onPress={setNewName}/>
+      <StatusBar style="auto"/>
+    </View>)
 }
 
 const styles = StyleSheet.create({
@@ -34,11 +47,16 @@ const styles = StyleSheet.create({
     flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center',
   },
 
-  buttonContainer: {
-    marginTop: 20,
-    borderWidth: 2,
+  input: {
+    borderColor: 'green',
     borderStyle: 'solid',
-    backgroundColor: 'pink',
-    padding: 20
-  },
+    borderWidth: 2,
+    borderRadius: 10,
+    fontWeight: '900',
+    fontSize: 30,
+    padding: 20,
+    width: 200
+  }
+
+
 })
