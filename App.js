@@ -21,6 +21,8 @@ export default function App() {
     return (
       <View style={style.container}>
         <Home/>
+        <About/>
+        <ReviewDetails/>
       </View>)
 
   } else {
@@ -32,8 +34,6 @@ export default function App() {
       />
     );
   }
-
-
 }
 
 const style = StyleSheet.create({

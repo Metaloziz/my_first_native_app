@@ -19,8 +19,8 @@ const style = StyleSheet.create({
   },
 
   title: {
-    fontFamily: 'JosefinSans-Regular',
-    // fontFamily: 'JosefinSans-Bold',
+    // fontFamily: 'JosefinSans-Regular',
+    fontFamily: 'JosefinSans-Bold',
     fontSize: 50
   }
 })
