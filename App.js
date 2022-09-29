@@ -1,41 +1,44 @@
-import {StatusBar} from 'expo-status-bar';
-import {StyleSheet, Text, View} from 'react-native';
+import { StatusBar } from 'expo-status-bar'
+import { useState } from 'react'
+import { Button, StyleSheet, Text, View } from 'react-native'
+
+const PERSON = {
+  name: 'John', sex: 'male'
+}
 
 export default function App() {
+
+  const [name, setName] = useState('default')
+  const [person, setPerson] = useState(PERSON)
+
+  const changeName = () => {
+    setName(Date.now().toString())
+    setPerson({ name: 'Ed', sex: 'girl' })
+    alert('done')
+  }
+
   return (<View style={styles.container}>
-    <View style={styles.header}>
-      <Text style={styles.boldText}>Hello world ! From iOS</Text>
-    </View>
     <View style={styles.body}>
-      <Text style={styles.boldText}>Lorem ipsum dolor sit amet, consectetur adipisicing
-        elit. Alias commodi
-        consequuntur <Text>distinctio esse explicabo fugiat illum ipsum iste laborum
-          laudantium</Text>
-        nam nesciunt nihil, quasi qui ratione, repudiandae tempore vero
-        voluptatibus.</Text>
-      <Text>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias commodi
-        consequuntur distinctio esse explicabo fugiat illum ipsum iste laborum laudantium
-        nam nesciunt nihil, quasi qui ratione, repudiandae tempore vero
-        voluptatibus.</Text>
+      <Text>{person.name} and {person.sex}</Text>
+      <Text>{name}</Text>
+    </View>
+    <View style={styles.buttonContainer}>
+      <Button title={'add'} onPress={changeName}/>
     </View>
     <StatusBar style="auto"/>
-  </View>);
+  </View>)
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center',
-  }, header: {
-    backgroundColor: 'pink', padding: 20,
   },
 
-  boldText: {
-    fontWeight: 'bold'
+  buttonContainer: {
+    marginTop: 20,
+    borderWidth: 2,
+    borderStyle: 'solid',
+    backgroundColor: 'pink',
+    padding: 20
   },
-
-  body: {
-    backgroundColor: 'yellow', padding: 20,
-
-  }
-
-});
+})
